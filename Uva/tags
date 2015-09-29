@@ -1,0 +1,80 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	11624.cpp	/^int A[4000];$/;"	v
+DB	ps3.cpp	2;"	d	file:
+Edge	kruskal.cpp	/^struct Edge$/;"	s	file:
+Edge	ps3.cpp	/^struct Edge$/;"	s	file:
+G	10004.cpp	/^vector<edge> G[MAX_V];$/;"	v
+G	ps3.cpp	/^vector<int> G[maxn],Gt[maxn];$/;"	v
+Gt	ps3.cpp	/^vector<int> G[maxn],Gt[maxn];$/;"	v
+Kruskal	kruskal.cpp	/^void Kruskal()$/;"	f
+Kruskal	ps3.cpp	/^void Kruskal()$/;"	f
+L	699.cpp	/^	int L,R,V,x,y;$/;"	m	struct:Node	file:
+MAX_N	prime.cpp	/^const int MAX_N=2147483647;$/;"	v
+MAX_V	10004.cpp	/^const int MAX_V=205;$/;"	v
+MST	ps3.cpp	/^DB MST,dist[maxn][maxn];$/;"	v
+Node	699.cpp	/^struct Node{$/;"	s	file:
+R	699.cpp	/^	int L,R,V,x,y;$/;"	m	struct:Node	file:
+V	699.cpp	/^	int L,R,V,x,y;$/;"	m	struct:Node	file:
+addEdge	10004.cpp	/^void addEdge(int u,int v){$/;"	f
+addNode	699.cpp	/^void addNode(int v){$/;"	f
+ans	11624.cpp	/^int ans[1005][1005];$/;"	v
+ans	tree.cpp	/^char ans[10010];$/;"	v
+build	tree.cpp	/^void build(int n,int rl,char* s1,char* s2){$/;"	f
+buildgragh	ps3.cpp	/^void buildgragh(){$/;"	f
+color	10004.cpp	/^int color[MAX_V];$/;"	v
+dfs	10004.cpp	/^int dfs(int v,int c){$/;"	f
+dfs	ps3.cpp	/^void dfs(int now,int fa)$/;"	f
+dist	ps3.cpp	/^DB MST,dist[maxn][maxn];$/;"	v
+dx	11624.cpp	/^int dx[4]={1,0,-1,0};$/;"	v
+dy	11624.cpp	/^int dy[4]={0,1,0,-1};$/;"	v
+edge	10004.cpp	/^struct edge{$/;"	s	file:
+edges	kruskal.cpp	/^vector<Edge> edges;$/;"	v
+edges	ps3.cpp	/^vector<Edge> edges;$/;"	v	typeref:struct:Edge
+find	kruskal.cpp	/^int find(int x){return g[x]==x?x:g[x]=find(g[x]);}$/;"	f
+from	kruskal.cpp	/^	int from,to,w;$/;"	m	struct:Edge	file:
+from	ps3.cpp	/^	int from,to;$/;"	m	struct:Edge	file:
+g	kruskal.cpp	/^int g[maxn];$/;"	v
+isbalance	839.cpp	/^int isbalance(int& W){$/;"	f
+isprime	prime.cpp	/^bool isprime[50000];$/;"	v
+m	kruskal.cpp	/^int n,m;$/;"	v
+main	10004.cpp	/^int main(){$/;"	f
+main	10474.cpp	/^int main(){$/;"	f
+main	10935.cpp	/^int main(){$/;"	f
+main	11624.cpp	/^int main(){$/;"	f
+main	514.cpp	/^int main(){$/;"	f
+main	699.cpp	/^int main(){$/;"	f
+main	839.cpp	/^int main(){$/;"	f
+main	kruskal.cpp	/^int main()$/;"	f
+main	prime.cpp	/^int main(){$/;"	f
+main	ps2.cpp	/^int main(){$/;"	f
+main	ps3.cpp	/^int main()$/;"	f
+main	tree.cpp	/^int main(){$/;"	f
+maps	11624.cpp	/^char maps[1005][1005];$/;"	v
+maxcost	ps3.cpp	/^int maxcost[maxn][maxn],vis[maxn];$/;"	v
+maxd	ps2.cpp	/^const int maxd=20;$/;"	v
+maxn	kruskal.cpp	/^const int maxn=1000000;$/;"	v
+n	kruskal.cpp	/^int n,m;$/;"	v
+n	ps3.cpp	/^int n;$/;"	v
+operator <	kruskal.cpp	/^	bool operator < (const Edge& rhs) const$/;"	f	struct:Edge
+operator <	ps3.cpp	/^	bool operator < (const Edge& rhs) const$/;"	f	struct:Edge
+point	11624.cpp	/^struct point{$/;"	s	file:
+preprocess	ps3.cpp	/^void preprocess()$/;"	f
+prime	prime.cpp	/^int prime[6000];$/;"	v
+s	ps2.cpp	/^int s[1<<maxd];$/;"	v
+sum	699.cpp	/^int sum[1999];$/;"	v
+to	10004.cpp	/^int to;$/;"	m	struct:edge	file:
+to	kruskal.cpp	/^	int from,to,w;$/;"	m	struct:Edge	file:
+to	ps3.cpp	/^	int from,to;$/;"	m	struct:Edge	file:
+tree	699.cpp	/^vector<Node> tree;$/;"	v
+vis	ps3.cpp	/^int maxcost[maxn][maxn],vis[maxn];$/;"	v
+w	kruskal.cpp	/^	int from,to,w;$/;"	m	struct:Edge	file:
+w	ps3.cpp	/^	DB w;$/;"	m	struct:Edge	file:
+x	11624.cpp	/^	int x,y;$/;"	m	struct:point	file:
+x	699.cpp	/^	int L,R,V,x,y;$/;"	m	struct:Node	file:
+y	11624.cpp	/^	int x,y;$/;"	m	struct:point	file:
+y	699.cpp	/^	int L,R,V,x,y;$/;"	m	struct:Node	file:
