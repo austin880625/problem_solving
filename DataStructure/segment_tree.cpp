@@ -1,46 +1,56 @@
 #include<iostream>
+#include<math.h>
 
 using namespace std;
 
-const int MAX_N=1000;
-int ar[MAX_N];
-int ST[MAX_N*4];
-int n,res;
+int ar[1000];
+int treee[3][2005];
+int n;
 
-void dfs(int left,int right,int pos){
-	int mid=(left+right)/2;
-	if(left==right)ST[pos]=ar[left];
-	else{
-		dfs(left,mid,pos*2);
-		dfs(mid+1,right,pos*2+1);
-		ST[pos]=ST[pos*2]+ST[pos*2+1];
-	}
+void update(int O,int L,int R,int pos,int v)
+{
+    if(L==R)
+    {
+        for(int i=0;i<3;i++)treee[i]=v;
+        return ;
+    }
+    int mid=(L+R)/2;
+    if(pos<=mid)update(O*2,L,mid,pos,v);
+    else update(O*2+1,mid,R,pos,v);
+    
+    treee[0][O]=max(tmax[O*2],tmax[O*2+1]);
+    treee[1][O]=min(tmax[O*2],tmax[O*2+1]);
+    treee[2][O]=tmax[O*2]+tmax[O*2+1];
 }
 
-void query(int left,int right,int L,int R,int pos){
-	//int res=0;
-	int M=(L+R)/2;
-	//cout<<pos<<endl;
-	if(left<=L&&right>=R)res+=ST[pos];
-	else{
-	if(left<M)query(left,right,L,M,pos*2);
-	if(right>M)query(left,right,M+1,R,pos*2+1);
-	}
-	//cout<<res<<endl;
+int a,b;
+int query(int f,int O,int L,int R)
+{
+    if(L==R)
+    {
+        return treee[f][O];
+    }
+    int mid=(L+R)/2;
+    int ans,inf=(1<<30);
+    if(f==0)
+    {
+        
+    }
 }
 
 int main(){
-	while(cin>>n){
-		for(int i=0;i<=4*n;i++)ST[i]=0;
-		for(int i=0;i<n;i++)cin>>ar[i];
-		dfs(0,n-1,1);
-		//for(int i=1;i<4*n;i++)cout<<ST[i]<<" ";
-		//cout<<endl;
-		int ql,qr;
-		cin>>ql>>qr;
-		res=0;
-		query(ql-1,qr-1,0,n-1,1);
-		cout<<res<<endl;
+	while(scanf("%d %d",&n,&q)==2)
+    {
+        for(int i=0;i<n;i++)
+        {
+            scanf("%d",&ar[i]);
+            update(1,0,n-1,i,ar[i]);
+        }
+        for(int i=0;i<q;i++)
+        {
+            scanf("%d %d",&a,&b);
+            printf("%d %d %d\n",query(0,1,0,n-1),query(1,1,0,n-1),query(2,1,0,n-1));
+        }
 	}
 }
 
