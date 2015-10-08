@@ -22,14 +22,15 @@ int conv(int pos)
 
 int main()
 {
-    freopen("beads.in","r",stdin);
-    freopen("beads.out","w",stdout);
+    //freopen("beads.in","r",stdin);
+    //freopen("beads.out","w",stdout);
     int ans=0,tmp;
-    cin>>N;
+    whie(cin>>N){
     string s;
     cin>>s;
     for(int i=0;i<N;i++)
     {
+        ans=0;
         char c1,c2;
         int t1=0,t2=0,f=1;
         c1=s[conv(i)];
@@ -59,5 +60,6 @@ int main()
         ans=min(N,max(tmp,ans));
     }
     cout<<ans<<endl;
+    }
     return 0;
 }

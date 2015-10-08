@@ -4,7 +4,7 @@
 using namespace std;
 
 int ar[1000];
-int treee[3][2005];
+int treee[3000];
 int n;
 
 void update(int O,int L,int R,int pos,int v)
@@ -18,13 +18,11 @@ void update(int O,int L,int R,int pos,int v)
     if(pos<=mid)update(O*2,L,mid,pos,v);
     else update(O*2+1,mid,R,pos,v);
     
-    treee[0][O]=max(tmax[O*2],tmax[O*2+1]);
-    treee[1][O]=min(tmax[O*2],tmax[O*2+1]);
-    treee[2][O]=tmax[O*2]+tmax[O*2+1];
+    
 }
 
 int a,b;
-int query(int f,int O,int L,int R)
+int query(int O,int L,int R)
 {
     if(L==R)
     {
@@ -49,7 +47,7 @@ int main(){
         for(int i=0;i<q;i++)
         {
             scanf("%d %d",&a,&b);
-            printf("%d %d %d\n",query(0,1,0,n-1),query(1,1,0,n-1),query(2,1,0,n-1));
+            printf("%d\n",query(1,0,n-1));
         }
 	}
 }
