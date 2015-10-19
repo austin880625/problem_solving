@@ -7,8 +7,8 @@ using namespace std;
 
 int TestCase;
 
-int maxt=20;
-int maxn=1001;
+int maxm=16;
+int maxn=15;
 
 /*int rand()
 {
@@ -22,30 +22,19 @@ int mabs(int x)
 
 int main()
 {
-    //cin>>TestCase;
+    cin>>TestCase;
     srand(time(NULL));
-    int n,m;
-    while(cin>>n>>m)
+    cout<<TestCase<<endl;
+    for(int tc=0;tc<TestCase;tc++)
     {
-        cout<<n<<" "<<m<<endl;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if((i==0&&j==0)||(i==n-1&&j==m-1))cout<<'.';
-                else cout<<(rand()%4 ? '.' :'O');
-            }
-            cout<<endl;
-        }
-    }
-    /*for(int tc=0;tc<TestCase;tc++)
-    {
-        int N=mabs(rand())%maxn;
-        int T=mabs(rand())%maxt;
-        printf("%d %d ",N,T);
-        for(int i=0;i<T;i++)
+        int N=mabs(rand())%maxn+1;
+        int M=mabs(rand())%(maxm-N)+N;
+        printf("%d %d\n",N,M);
+        for(int i=0;i<N;i++)
         {
-            printf("%d ",mabs(rand()%N));
+            printf("%d ",mabs(rand()%N+1));
         }
-        cout<<endl;
-    }*/
+        printf("\n");
+    }
         
 }

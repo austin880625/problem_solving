@@ -65,7 +65,7 @@ void dfs2(poi X)
     {
         int nr=X.row+drow[i],nc=X.col+dcol[i];
         if(nr<0||nr>=n||nc<0||nc>=m||!mat[nr][nc])continue;
-        
+        if(nr==n-1&&nc==m-1){vis2[nr][nc]=1;return;}
         if(!vis2[nr][nc])
         {
             dfs2((poi){nr,nc});
