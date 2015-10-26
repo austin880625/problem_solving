@@ -92,7 +92,7 @@ void query1D(Node1D *&O,int L,int R,int &mx,int &mn)
         query2D(O->T,0,N-1,mx,mn);
     }
     int mid=(L+R)/2;
-
+    if(L==R)return ;
     if(L1D<=mid)query1D(O->lc,L,mid,mx,mn);
     if(R1D>mid)query1D(O->rc,mid+1,R,mx,mn);
 }
