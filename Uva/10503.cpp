@@ -1,74 +1,57 @@
-#include<iostream>
-
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#define MAXM 29
 using namespace std;
-int n,m;
-int used[100];
-int ans;
 
 struct domino
 {
-    int fr,ta;
-    int connect(domino D)
-    {
-        if(ta==D.fr)return 1;
-        if(ta==D.ta)return -1;
-        return 0;
-    }
+    int u,v;
 };
-domino Dominos[100];
-int ord[100];
+int M,N;
+vector<domino> X;
+int vis[MAXM];
+int S,T,a,b;
 
-void dfs(int dep,int now)
+int dfs(int dep,int now)
 {
-    //cout<<"\n";
-    //for(int i=0;i<dep;i++)cout<<"\t";
-    domino D=Dominos[now];
-    //cout<<ans<<" "<<now<<"\n";
-    if(dep==n)
+    int res=0;
+    if(dep==N)res|= X[now].v==T;
+    vis[now]=vis[now^1]=1;
+    for(int i=0;i<2*M;i++)
     {
-        //cout<<"Get!!"<<endl;
-        ans=(D.ta==Dominos[2].fr ? 1 : 0);
-    }
-    else if(!ans)
-    {
-        //for(int t=0;t<dep;t++)cout<<"\t";
-        for(int i=4; i<=2*(m+1)+1; i++)
-        {
-
-            //cout<<"["<<used[i]<<"]";
-            if(!used[i])
-            {
-                int det=D.connect(Dominos[i]);
-                if(det)
-                {
-                    used[i]=used[i^1]=1;
-                    dfs(dep+1,i);
-                    used[i]=used[i^1]=0;
-                }
-            }
+        if(X[i].u==X[i].v&&i%2)continue;
+        if(!vis[i]&&X[i].u==X[now].v){
+            //cout<<dep<<" "<<i<<" "<<X[i].u<<" "<<X[i].v<<endl;
+            res|=dfs(dep+1,i);
         }
-        //cout<<endl;
     }
+    vis[now]=vis[now^1]=0;
+    return res;
 }
 
 int main()
 {
-    while(cin>>n)
+    while(scanf("%d",&N)==1)
     {
-        if(n==0)break;
-        cin>>m;
-        int f,t;
-        for(int i=0; i<=m+1; i++)
+        if(!N)break;
+        scanf("%d",&M);
+        for(int i=0;i<MAXM;i++)vis[i]=0;
+        scanf("%d%d%d%d",&a,&S,&T,&b);
+        X.clear();
+        for(int i=0;i<M;i++)
         {
-            used[2*i]=used[2*i+1]=0;
-            cin>>f>>t;
-            Dominos[2*i]=(domino){f,t};
-            Dominos[2*i+1]=(domino){t,f};
+            scanf("%d%d",&a,&b);
+            X.push_back((domino){a,b});
+            X.push_back((domino){b,a});
         }
-        ord[0]=0;
-        ans=0;
-        dfs(0,0);
-        cout<<(ans ? "YES" : "NO")<<endl;
+        int ans=0;
+        for(int i=0;i<2*M;i++)
+        {
+            if(X[i].u==S){ans|=dfs(1,i);}
+        }
+        printf(ans ? "YES" : "NO");
+        puts("");
     }
     return 0;
 }

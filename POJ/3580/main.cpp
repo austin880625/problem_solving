@@ -100,7 +100,7 @@ void DELETE(Node *&O,int x)
 {
     Node *T1,*T2;
     split(O,x-1,O,T1);
-    split(T1,1,T1,T2);  //切完的子樹應該要切第一個出來
+    split(T1,1,T1,T2);
     delete T1;
     O=merge(O,T2);
 }
@@ -126,7 +126,7 @@ void REVERSE(Node *&O,int x,int y)
 void REVOLVE(Node *&O,int x,int y,int P)
 {
     P=(P%(y-x+1)+(y-x+1))%(y-x+1);
-    if(P==0)return ;    //判零要判對地方R~
+    if(P==0)return ;    
     REVERSE(O,y-P+1,y);
     REVERSE(O,x,y-P);
     REVERSE(O,x,y);
