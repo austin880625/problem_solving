@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#define LL long long int
+#define MAXN 300000
+
+using namespace std;
+
+int N,M,K;
+struct Node2
+{
+    LL maxv;
+    Node2 *ch[2];
+    Node2(){maxv=0;ch[0]=ch[1]=NULL;}
+};
+struct Node1
+{
+    Node1* ch[2];
+    Node2* t2;
+    Node1(){ch[0]=ch[1]=NULL;t2=NULL;}
+};
+
+int L1,R1,L2,R2;
+int X,Y;LL V;
+inline LL mx(Node2 *o){return o ? o->maxv : 0;}
+void modify2(Node2 *&o,int l,int r)
+{
+    //cout<<"m2 "<<l<<" "<<r<<endl;
+    if(!o)o=new Node2();
+    if(l==r){o->maxv=max(o->maxv,V);return ;}
+
+    int mid=(l+r)/2;
+    if(Y<=mid)modify2(o->ch[0],l,mid);
+    else modify2(o->ch[1],mid+1,r);
+    o->maxv=max(mx(o->ch[0]),mx(o->ch[1]));
+}
+void modify1(Node1 *&o,int l,int r)
+{
+    //cout<<"m1 "<<l<<" "<<r<<endl;
+    if(!o)o=new Node1();
+    if(l==r){modify2(o->t2,0,M);return ;}
+
+    int mid=(l+r)/2;
+    if(X<=mid)modify1(o->ch[0],l,mid);
+    else modify1(o->ch[1],mid+1,r);
+    modify2(o->t2,0,M);
+}
+
+LL query2(Node2 *&o,int l,int r)
+{
+    //cout<<"2 "<<l<<" "<<r<<endl;
+    if(!o)return 0;
+    LL res=0;
+    if(L2<=l&&r<=R2)return mx(o);
+
+    int mid=(l+r)/2;
+    if(L2<=mid)res=max(res,query2(o->ch[0],l,mid));
+    if(R2>mid)res=max(res,query2(o->ch[1],mid+1,r));
+    return res;
+}
+LL query1(Node1 *&o,int l,int r)
+{
+    //cout<<"1 "<<l<<" "<<r<<endl;
+    if(!o)return 0;
+    LL res=0;
+    if(L1<=l&&r<=R1)return query2(o->t2,0,M);
+
+    int mid=(l+r)/2;
+    if(L1<=mid)res=max(res,query1(o->ch[0],l,mid));
+    if(R1>mid)res=max(res,query1(o->ch[1],mid+1,r));
+    return res;
+}
+
+struct line
+{
+    int a,b;
+    LL e;
+    bool operator <(const line &r)const{
+        return b<r.b;
+    }
+};
+
+line L[MAXN];
+LL dp[MAXN];
+Node1 *T;
+
+int main()
+{
+    L[0].a=0,L[0].b=0;L[0].e=0;
+    while(scanf("%d%d%d",&N,&M,&K)==3)
+    {
+        T=NULL;
+        for(int i=1;i<=K;i++)
+        {
+            scanf("%d%d%lld",&L[i].a,&L[i].b,&L[i].e);
+        }
+        sort(L+1,L+K+1);
+        dp[0]=0;
+        LL ans=0;
+        for(int i=1;i<=K;i++)
+        {
+            dp[i]=0;
+            //cout<<i<<endl;
+            L1=0,R1=L[i].a-1,L2=0,R2=L[i].b-1;
+            dp[i]=query1(T,0,N)+L[i].e;
+            //cout<<dp[i]<<endl;
+            X=L[i].a,Y=L[i].b,V=dp[i];
+            modify1(T,0,N);
+            ans=max(ans,dp[i]);
+        }
+        printf("%lld\n",ans);
+    }
+    return 0;
+}

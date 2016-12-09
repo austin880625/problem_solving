@@ -20,9 +20,9 @@ int s,t;
 bool BFS()
 {
     for(int i=0;i<MAXN;i++)vis[i]=0;
-    queue Q;
+    queue<int> Q;
     Q.push(s);
-    vis[s]=0;
+    vis[s]=true;
     d[s]=0;
     while(!Q.empty())
     {
@@ -43,7 +43,7 @@ bool BFS()
 
 int DFS(int x,int a)
 {
-    if(x==t||x==0)return a;
+    if(x==t||a==0)return a;
     int flow=0,f;
     for(int& i=cur[x];i<G[x].size();i++)
     {

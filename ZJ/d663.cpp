@@ -1,63 +1,48 @@
-#include<iostream>
-#include<stdio.h>
-#include<vector>
+#include <stdio.h>
+#include <iostream>
+#define MAXT 1005
 using namespace std;
-int S,T;
-const int INF=1000000;
-int dp[4005];
-vector<int> factor;
-int isprime(int N)
-{
-    if(N==1)return 0;
-    if(N==2)return 1;
-    for(int i=2;i*i<=N;i++)
-    {
-        if(!(N%i))return 0;
-    }
-    return 1;
-}
 
-void calc(int N)
+int S,T;
+int d[MAXT];
+bool is_prime[MAXT];
+
+void pre_process()
 {
-    int K=N;
-    factor.clear();
-    for(int i=2;i*i<=K;i++)
+    for(int i=0;i<MAXT;i++)is_prime[i]=true;
+    is_prime[1]=false;
+    for(int i=2;i<MAXT;i++)
     {
-        while(isprime(i)&&!(N%i))
+        if(is_prime[i])
         {
-            factor.push_back(i);
-            N/=i;
+            for(int j=2*i;j<MAXT;j+=i)is_prime[j]=false;
         }
     }
-    if(isprime(N)&&N!=K&&N*N!=K)factor.push_back(N);
 }
+
 int main()
 {
     int kase=0;
-    while(scanf("%d %d",&S,&T)==2)
+    pre_process();
+    while(scanf("%d%d",&S,&T)==2&&(S||T))
     {
-        if(!S&&!T)break;
-        for(int i=0;i<4005;i++)dp[i]=INF;
-        if(T>=S)
+        printf("Case %d: ",++kase);
+        for(int i=0;i<MAXT;i++)d[i]=-1;
+        d[S]=0;
+        for(int i=S;i<T;i++)
         {
-            dp[S]=0;
-            for(int i=S;i<=T;i++)
-            {
-                if(dp[i]!=INF)
+            if(d[i]!=-1)
+                for(int j=2;j*j<=i;j++)
                 {
-                    calc(i);
-                    for(int j=0;j<factor.size();j++)
+                    if(i%j==0)
                     {
-                        if(dp[i]+1<dp[i+factor[j]])
-                        {
-                            dp[i+factor[j]]=dp[i]+1;
-                        }
+                        if(is_prime[j])
+                            d[i+j]=d[i+j]==-1 ? d[i]+1 : min(d[i]+1,d[i+j]);
+                        if(is_prime[i/j])
+                            d[i+i/j]=d[i+i/j]==-1 ? d[i]+1 : min(d[i]+1,d[i+i/j]);
                     }
                 }
-            }
         }
-        if(dp[T]!=INF)printf("Case %d: %d\n",++kase,dp[T]);
-        else printf("Case %d: -1\n",++kase);
+        printf("%d\n",d[T]);
     }
-    return  0;
 }
