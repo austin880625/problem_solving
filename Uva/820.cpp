@@ -1,5 +1,5 @@
-#include <iostream>
 #include <stdio.h>
+#include <iostream>
 #include <vector>
 #include <queue>
 #define MAXN 105

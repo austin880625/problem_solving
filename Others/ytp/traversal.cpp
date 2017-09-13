@@ -1,9 +1,10 @@
+
 #include<iostream>
 #include<stdio.h>
-#define MAXN 105
+#define MAXN 505
 #define INF 2147483647
 using namespace std;
-int w[MAXN][MAXN],N;
+int w[MAXN][MAXN],N,ans;
 int Lx[MAXN],Ly[MAXN];
 int Left[MAXN];
 bool S[MAXN],T[MAXN];   //it's only a tag!
@@ -51,15 +52,29 @@ void KM()
     {
         while(1)
         {
+        	//cout<<i<<endl;
             for(int j=1;j<=N;j++){S[j]=T[j]=false;}
             if(match(i))break;
             else update();  //there will be a new edge between S and T'
+            //cout<<"done"<<endl;
         }
     }
 }
 
 int main()
 {
-
+	while(scanf("%d",&N)==1)
+	{
+		ans=0;
+		for(int i=1;i<=N;i++)
+		{
+			for(int j=1;j<=N;j++)scanf("%d",&w[i][j]);
+		}
+		//cout<<"YEE"<<endl;
+		KM();
+		//cout<<"YEE"<<endl;
+		for(int i=1;i<=N;i++)ans+=Lx[i]+Ly[i];
+		printf("%d\n",ans);
+	}
     return 0;
 }
