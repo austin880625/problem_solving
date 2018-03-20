@@ -1,3 +1,4 @@
+//POJ 3580
 #include<iostream>
 #include<stdio.h>
 #include<string.h>
@@ -41,7 +42,7 @@ void Splay(Node *&O,int k)  //splay kth to root
     pushdown(O);
     int now=O->ch[0]->sz+1,dir1=(k==now ? -1 : (k<now ? 0 : 1));
     k-=dir1*now;    //如果在左子樹名次不會變，在右子樹要減目前節點的rank
-    
+
     if(dir1!=-1)//需要轉的話
     {
         //以下是對左子樹做的事
@@ -103,7 +104,7 @@ void solve(Node *&O,int a,int b)
     Split(T,b-a+1,mid,R);
     //print(mid);
     mid->flip^=1;
-    
+
     Merge(L,R);
     Merge(L,mid);
     O=L;

@@ -5,8 +5,8 @@ using namespace std;
 
 int TestCase;
 
-int maxt=20;
-int maxn=1001;
+int maxt=1000000;
+int maxn=1000000000;;
 
 int rand()
 {
@@ -23,12 +23,12 @@ int main()
     cin>>TestCase;
     for(int tc=0;tc<TestCase;tc++)
     {
-        int N=mabs(rand())%maxn;
+        //int N=mabs(rand())%maxn;
         int T=mabs(rand())%maxt;
-        printf("%d %d ",N,T);
+        printf("%d ",T);
         for(int i=0;i<T;i++)
         {
-            printf("%d ",mabs(rand()%N));
+            printf("%d ",rand()%maxn);
         }
         cout<<endl;
     }
