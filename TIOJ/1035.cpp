@@ -22,7 +22,7 @@ int getn(int x,int y)
 struct vec
 {
     int s[VEC_SIZE];
-    vec(){for(int i=0;i<VEC_SIZE;i++)fill(s,s+VEC_SIZE,0)}
+    vec(){for(int i=0;i<VEC_SIZE;i++)fill(s,s+VEC_SIZE,0);}
     vec(int p){for(int i=0;i<VEC_SIZE;i++)fill(s,s+VEC_SIZE,0);s[p]=1;}
     inline int sumup(){int res=0;for(int i=0;i<VEC_SIZE;i++)res+=s[i];return res;}
     vec operator +(const vec &r)
